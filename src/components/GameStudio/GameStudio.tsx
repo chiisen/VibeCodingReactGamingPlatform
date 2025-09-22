@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FiPlay, FiSave, FiShare, FiSettings } from 'react-icons/fi';
 import GameCanvas from './components/GameCanvas';
 import BlockPalette from './components/BlockPalette';
 import GamePreview from './components/GamePreview';
 import AssetLibrary from './components/AssetLibrary';
+import { useTranslation } from '../../i18n.tsx';
 
 const GameStudio = () => {
+  const { t } = useTranslation();
   const [isPlaying, setIsPlaying] = useState(false);
   const [gameCode, setGameCode] = useState([]);
 
@@ -27,8 +29,8 @@ const GameStudio = () => {
       <header className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-4">
-            <h1 className="text-2xl font-bold text-gray-900">Game Studio</h1>
-            <span className="text-sm text-gray-500">Untitled Game</span>
+            <h1 className="text-2xl font-bold text-gray-900">{t('game_studio.title')}</h1>
+            <span className="text-sm text-gray-500">{t('game_studio.untitled_game')}</span>
           </div>
 
           <div className="flex items-center space-x-2">
@@ -37,7 +39,7 @@ const GameStudio = () => {
               className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
             >
               <FiSave className="w-4 h-4" />
-              <span>Save</span>
+              <span>{t('game_studio.save')}</span>
             </button>
 
             <button
@@ -45,7 +47,7 @@ const GameStudio = () => {
               className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
             >
               <FiShare className="w-4 h-4" />
-              <span>Share</span>
+              <span>{t('game_studio.share')}</span>
             </button>
 
             <button
@@ -57,7 +59,7 @@ const GameStudio = () => {
               }`}
             >
               <FiPlay className="w-4 h-4" />
-              <span>{isPlaying ? 'Stop' : 'Play'}</span>
+              <span>{isPlaying ? t('game_studio.stop') : t('game_studio.play')}</span>
             </button>
           </div>
         </div>
@@ -68,7 +70,7 @@ const GameStudio = () => {
         {/* Left Sidebar - Block Palette */}
         <div className="w-80 bg-white border-r border-gray-200 flex flex-col">
           <div className="p-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Blocks</h2>
+            <h2 className="text-lg font-semibold text-gray-900">{t('game_studio.blocks')}</h2>
           </div>
           <div className="flex-1 overflow-y-auto p-4">
             <BlockPalette />
@@ -85,14 +87,14 @@ const GameStudio = () => {
         {/* Right Sidebar - Assets & Preview */}
         <div className="w-80 bg-white border-l border-gray-200 flex flex-col">
           <div className="p-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Assets</h2>
+            <h2 className="text-lg font-semibold text-gray-900">{t('game_studio.assets')}</h2>
           </div>
           <div className="flex-1 overflow-y-auto p-4">
             <AssetLibrary />
           </div>
 
           <div className="p-4 border-t border-gray-200">
-            <h3 className="text-md font-semibold text-gray-900 mb-2">Preview</h3>
+            <h3 className="text-md font-semibold text-gray-900 mb-2">{t('game_studio.preview')}</h3>
             <GamePreview />
           </div>
         </div>

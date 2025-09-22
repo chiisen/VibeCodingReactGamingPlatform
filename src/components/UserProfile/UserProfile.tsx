@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FiEdit, FiSettings, FiStar, FiHeart, FiPlay, FiCalendar, FiAward } from 'react-icons/fi';
+import { FiEdit, FiSettings, FiHeart, FiPlay, FiCalendar, FiAward } from 'react-icons/fi';
+import { useTranslation } from '../../i18n.tsx'; // Fix the import statement to use the local i18n module
 
 const UserProfile = () => {
+  const { t } = useTranslation();
   const { userId } = useParams<{ userId?: string }>();
   const [activeTab, setActiveTab] = useState('games');
 
@@ -26,9 +28,9 @@ const UserProfile = () => {
   };
 
   const tabs = [
-    { id: 'games', label: 'My Games', icon: FiPlay },
-    { id: 'liked', label: 'Liked Games', icon: FiHeart },
-    { id: 'achievements', label: 'Achievements', icon: FiAward },
+    { id: 'games', label: t('userProfile.myGames'), icon: FiPlay },
+    { id: 'liked', label: t('userProfile.likedGames'), icon: FiHeart },
+    { id: 'achievements', label: t('userProfile.achievements'), icon: FiAward },
   ];
 
   // Sample user's games
@@ -66,12 +68,12 @@ const UserProfile = () => {
   ];
 
   const achievements = [
-    { name: 'First Game', description: 'Created your first game', icon: '🎮', unlocked: true },
-    { name: 'Popular Creator', description: 'Reached 1000 plays', icon: '⭐', unlocked: true },
-    { name: 'Game Master', description: 'Created 10 games', icon: '👑', unlocked: true },
-    { name: 'Community Favorite', description: 'Received 500 likes', icon: '❤️', unlocked: false },
-    { name: 'Educator', description: 'Created 5 educational games', icon: '📚', unlocked: false },
-    { name: 'Speed Runner', description: 'Created a game in under 1 hour', icon: '⚡', unlocked: false },
+    { name: t('first_game'), description: t('created_first_game'), icon: '🎮', unlocked: true },
+    { name: t('popular_creator'), description: t('reached_1000_plays'), icon: '⭐', unlocked: true },
+    { name: t('game_master'), description: t('created_10_games'), icon: '👑', unlocked: true },
+    { name: t('community_favorite'), description: t('received_500_likes'), icon: '❤️', unlocked: false },
+    { name: t('educator'), description: t('created_5_educational_games'), icon: '📚', unlocked: false },
+    { name: t('speed_runner'), description: t('created_game_in_under_1_hour'), icon: '⚡', unlocked: false },
   ];
 
   const renderTabContent = () => {
@@ -88,8 +90,8 @@ const UserProfile = () => {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{game.title}</h3>
                   <p className="text-gray-600 text-sm mb-3 line-clamp-2">{game.description}</p>
                   <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                    <span>👁 {game.plays} plays</span>
-                    <span>❤️ {game.likes} likes</span>
+                    <span>👁 {game.plays} {t('userProfile.plays')}</span>
+                    <span>❤️ {game.likes} {t('userProfile.likes')}</span>
                     <span>⭐ {game.rating}</span>
                   </div>
                   <Link
@@ -97,7 +99,7 @@ const UserProfile = () => {
                     className="w-full bg-primary-500 text-white text-center px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors flex items-center justify-center space-x-2"
                   >
                     <FiPlay className="w-4 h-4" />
-                    <span>Play Game</span>
+                    <span>{t('play_game')}</span>
                   </Link>
                 </div>
               </div>
@@ -114,13 +116,13 @@ const UserProfile = () => {
                 🎯
               </div>
               <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Target Practice</h3>
-                <p className="text-gray-600 text-sm mb-3">Improve your aim in this fun shooting game</p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{t('target_practice')}</h3>
+                <p className="text-gray-600 text-sm mb-3">{t('improve_your_aim')}</p>
                 <Link
                   to="/play/liked-1"
                   className="w-full bg-primary-500 text-white text-center px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors"
                 >
-                  Play Game
+                  {t('play_game')}
                 </Link>
               </div>
             </div>
@@ -133,11 +135,10 @@ const UserProfile = () => {
             {achievements.map((achievement, index) => (
               <div
                 key={index}
-                className={`p-4 rounded-lg border-2 ${
-                  achievement.unlocked
+                className={`p-4 rounded-lg border-2 ${achievement.unlocked
                     ? 'bg-yellow-50 border-yellow-300'
                     : 'bg-gray-50 border-gray-200'
-                }`}
+                  }`}
               >
                 <div className="flex items-center space-x-3">
                   <div className={`text-3xl ${achievement.unlocked ? '' : 'grayscale opacity-50'}`}>
@@ -187,7 +188,7 @@ const UserProfile = () => {
             <div className="flex flex-wrap gap-4 text-sm text-gray-500">
               <span className="flex items-center gap-1">
                 <FiCalendar className="w-4 h-4" />
-                Joined {new Date(user.joinDate).toLocaleDateString()}
+                {t('joined')} {new Date(user.joinDate).toLocaleDateString()}
               </span>
               <span>{user.location}</span>
               <a href={user.website} className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">
@@ -208,11 +209,11 @@ const UserProfile = () => {
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
         {Object.entries(user.stats).map(([key, value]) => {
           const labels = {
-            gamesCreated: 'Games',
-            totalPlays: 'Total Plays',
-            totalLikes: 'Likes',
-            followers: 'Followers',
-            following: 'Following'
+            gamesCreated: t('games'),
+            totalPlays: t('total_plays'),
+            totalLikes: t('likes'),
+            followers: t('followers'),
+            following: t('following')
           };
 
           return (
@@ -233,11 +234,10 @@ const UserProfile = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                  activeTab === tab.id
+                className={`flex items-center space-x-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === tab.id
                     ? 'bg-white text-primary-700 shadow-sm'
                     : 'text-gray-600 hover:text-gray-900'
-                }`}
+                  }`}
               >
                 <Icon className="w-4 h-4" />
                 <span>{tab.label}</span>

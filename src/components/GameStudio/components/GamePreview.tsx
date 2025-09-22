@@ -1,4 +1,3 @@
-import React from 'react';
 import { FiPlay, FiPause, FiRotateCcw } from 'react-icons/fi';
 
 const GamePreview = () => {

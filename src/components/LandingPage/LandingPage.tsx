@@ -1,28 +1,29 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiCode, FiPlay, FiUsers, FiStar } from 'react-icons/fi';
+import { useTranslation } from '../../i18n.tsx';
 
 const LandingPage = () => {
+  const { t } = useTranslation();
   const features = [
     {
       icon: FiCode,
-      title: 'Visual Coding',
-      description: 'Create games with drag-and-drop blocks, no coding experience required'
+      title: t('landing.features.visualCoding.title'),
+      description: t('landing.features.visualCoding.description')
     },
     {
       icon: FiPlay,
-      title: 'Instant Preview',
-      description: 'See your changes immediately as you build your game'
+      title: t('landing.features.instantPreview.title'),
+      description: t('landing.features.instantPreview.description')
     },
     {
       icon: FiUsers,
-      title: 'Collaborate',
-      description: 'Work together with friends on amazing game projects'
+      title: t('landing.features.collaborate.title'),
+      description: t('landing.features.collaborate.description')
     },
     {
       icon: FiStar,
-      title: 'Share & Play',
-      description: 'Share your creations with the world and play games by others'
+      title: t('landing.features.sharePlay.title'),
+      description: t('landing.features.sharePlay.description')
     }
   ];
 
@@ -31,26 +32,25 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="text-center py-20">
         <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
-          Create Games
-          <span className="text-primary-500 block">Visually</span>
+          {t('landing.hero.title')}
+          <span className="text-primary-500 block">{t('landing.hero.subtitle')}</span>
         </h1>
         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-          VibeCoding makes game development accessible to everyone. Build amazing games
-          with our intuitive visual coding interface - no programming experience required.
+          {t('landing.hero.description')}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             to="/studio"
             className="bg-primary-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-600 transition-colors flex items-center justify-center"
           >
-            Start Creating
+            {t('landing.hero.startCreating')}
             <FiArrowRight className="ml-2 w-5 h-5" />
           </Link>
           <Link
             to="/gallery"
             className="bg-white text-primary-500 border-2 border-primary-500 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-50 transition-colors"
           >
-            Explore Games
+            {t('landing.hero.exploreGames')}
           </Link>
         </div>
       </section>
@@ -59,11 +59,10 @@ const LandingPage = () => {
       <section className="py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Everything You Need to Create Amazing Games
+            {t('landing.features.title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            From simple puzzles to complex adventures, our platform provides all the tools
-            you need to bring your game ideas to life.
+            {t('landing.features.description')}
           </p>
         </div>
 
@@ -86,16 +85,16 @@ const LandingPage = () => {
       {/* CTA Section */}
       <section className="bg-primary-500 rounded-2xl p-12 text-center text-white">
         <h2 className="text-3xl font-bold mb-4">
-          Ready to Start Your Game Development Journey?
+          {t('landing.cta.title')}
         </h2>
         <p className="text-xl mb-8 opacity-90">
-          Join thousands of creators who are already building amazing games with VibeCoding.
+          {t('landing.cta.description')}
         </p>
         <Link
           to="/studio"
           className="bg-white text-primary-500 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center"
         >
-          Create Your First Game
+          {t('landing.cta.createYourFirstGame')}
           <FiArrowRight className="ml-2 w-5 h-5" />
         </Link>
       </section>

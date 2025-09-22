@@ -1,4 +1,3 @@
-import React from 'react';
 import { FiMousePointer, FiMove, FiRotateCcw, FiPlay, FiPause } from 'react-icons/fi';
 
 const BlockPalette = () => {

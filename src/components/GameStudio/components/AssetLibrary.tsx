@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FiImage, FiMusic, FiFileText, FiUpload, FiPlay } from 'react-icons/fi';
 
 const AssetLibrary = () => {
