@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FiImage, FiMusic, FiFileText, FiUpload } from 'react-icons/fi';
+import { FiImage, FiMusic, FiFileText, FiUpload, FiPlay } from 'react-icons/fi';
 
 const AssetLibrary = () => {
   const [activeTab, setActiveTab] = useState('sprites');

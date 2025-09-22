@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FiEdit, FiSettings, FiStar, FiHeart, FiPlay, FiCalendar, FiTrophy } from 'react-icons/fi';
+import { FiEdit, FiSettings, FiStar, FiHeart, FiPlay, FiCalendar, FiAward } from 'react-icons/fi';
 
 const UserProfile = () => {
   const { userId } = useParams<{ userId?: string }>();
@@ -28,7 +28,7 @@ const UserProfile = () => {
   const tabs = [
     { id: 'games', label: 'My Games', icon: FiPlay },
     { id: 'liked', label: 'Liked Games', icon: FiHeart },
-    { id: 'achievements', label: 'Achievements', icon: FiTrophy },
+    { id: 'achievements', label: 'Achievements', icon: FiAward },
   ];
 
   // Sample user's games
